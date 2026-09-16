@@ -1,0 +1,17 @@
+{
+    "file": "sample.py",
+    "unused_imports": [
+        "os",
+        "math"
+    ],
+    "long_functions": [],
+    "excessive_nesting": [
+        11,
+        12
+    ],
+    "naming_problems": [
+        "BadFunctionName"
+    ],
+    "complexity_score": 5,
+    "total_issues": 5
+}

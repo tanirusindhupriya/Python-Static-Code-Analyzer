@@ -1,0 +1,377 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Python Static Code Analyzer</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #eef2ff, #f8fafc);
+    color: #1e293b;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 35px 20px;
+}
+
+.header {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    padding: 35px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(79,70,229,0.25);
+    animation: slideDown 0.8s ease;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.header p {
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+.file {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: fadeUp 0.8s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.card h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.number {
+    font-size: 35px;
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+.dashboard {
+    margin-top: 25px;
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.dashboard h2 {
+    margin-top: 0;
+}
+
+.bar {
+    margin: 20px 0;
+}
+
+.bar-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 7px;
+    font-weight: bold;
+}
+
+.bar-bg {
+    height: 14px;
+    background: #e2e8f0;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    border-radius: 20px;
+    animation: grow 1.5s forwards;
+}
+
+.imports {
+    background: #ef4444;
+    width: 40%;
+}
+
+.functions {
+    background: #f59e0b;
+    width: 5%;
+}
+
+.nesting {
+    background: #8b5cf6;
+    width: 40%;
+}
+
+.naming {
+    background: #06b6d4;
+    width: 20%;
+}
+
+.complexity {
+    margin-top: 25px;
+    text-align: center;
+    padding: 30px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #111827, #312e81);
+    color: white;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.complexity h2 {
+    margin: 0;
+}
+
+.score {
+    font-size: 55px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.issue {
+    margin-top: 18px;
+    padding: 20px;
+    border-radius: 12px;
+    background: #f8fafc;
+    border-left: 5px solid #4f46e5;
+    transition: transform 0.3s;
+}
+
+.issue:hover {
+    transform: translateX(8px);
+}
+
+.issue h3 {
+    margin-top: 0;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #64748b;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes grow {
+    from {
+        width: 0;
+    }
+}
+
+@media (max-width: 800px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>Python Static Code Analyzer</h1>
+
+<p>Automated Source Code Quality Dashboard</p>
+
+<div class="file">
+Analyzed File: sample.py
+</div>
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Unused Imports</h3>
+<div class="number">2</div>
+</div>
+
+<div class="card">
+<h3>Long Functions</h3>
+<div class="number">0</div>
+</div>
+
+<div class="card">
+<h3>Naming Problems</h3>
+<div class="number">1</div>
+</div>
+
+<div class="card">
+<h3>Total Issues</h3>
+<div class="number">5</div>
+</div>
+
+</div>
+
+<div class="dashboard">
+
+<h2>Issue Analysis</h2>
+
+<div class="bar">
+
+<div class="bar-title">
+<span>Unused Imports</span>
+<span>2</span>
+</div>
+
+<div class="bar-bg">
+<div class="bar-fill imports"></div>
+</div>
+
+</div>
+
+<div class="bar">
+
+<div class="bar-title">
+<span>Long Functions</span>
+<span>0</span>
+</div>
+
+<div class="bar-bg">
+<div class="bar-fill functions"></div>
+</div>
+
+</div>
+
+<div class="bar">
+
+<div class="bar-title">
+<span>Excessive Nesting</span>
+<span>2</span>
+</div>
+
+<div class="bar-bg">
+<div class="bar-fill nesting"></div>
+</div>
+
+</div>
+
+<div class="bar">
+
+<div class="bar-title">
+<span>Naming Problems</span>
+<span>1</span>
+</div>
+
+<div class="bar-bg">
+<div class="bar-fill naming"></div>
+</div>
+
+</div>
+
+</div>
+
+<div class="complexity">
+
+<h2>Complexity Score</h2>
+
+<div class="score">5</div>
+
+<p>Basic complexity indicator</p>
+
+</div>
+
+<div class="dashboard">
+
+<h2>Detailed Findings</h2>
+
+<div class="issue">
+<h3>Unused Imports</h3>
+<p>os, math</p>
+</div>
+
+<div class="issue">
+<h3>Long Functions</h3>
+<p>No issues found</p>
+</div>
+
+<div class="issue">
+<h3>Excessive Nesting</h3>
+<p>11, 12</p>
+</div>
+
+<div class="issue">
+<h3>Naming Problems</h3>
+<p>BadFunctionName</p>
+</div>
+
+</div>
+
+<div class="footer">
+
+Generated automatically by Python Static Code Analyzer
+
+</div>
+
+</div>
+
+</body>
+
+</html>
